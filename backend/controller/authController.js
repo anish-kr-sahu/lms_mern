@@ -32,7 +32,7 @@ export const signUp = async (req,res) =>{
         })
         // token generate hona chahiyea or yae parse ho jaye cookies mai store
         let token = await genToken(user._id);
-        req.cookie("token",token,{
+        res.cookie("token",token,{
             httpOnly:true,
             secure:false,
             sameSite: "Strict",
@@ -57,8 +57,8 @@ export const login = async (req,res) =>{
             return res.status(400).json({msg: "Incorrect password"});
         }
         let token = await genToken(user._id);
-        req.cookie("token", token, {
-            httpOnly: tru,
+        res.cookie("token", token, {
+            httpOnly: true,
             secure:false,
             sameSite: "Strict",
             maxAge: 7*24*60*60*1000
