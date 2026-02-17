@@ -29,7 +29,7 @@ function SignUp() {
         console.log(result.data);
         setLoading(false);
         navigate('/');
-        toast.done("signup Successfully");
+        toast.success("signup Successfully");
     }catch(error){
       console.log(error);
       setLoading(false);
