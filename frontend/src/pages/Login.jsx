@@ -3,9 +3,11 @@ import logo from "../assets/logo.jpg"
 import google from "../assets/google.jpg"
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEye } from "react-icons/io5";
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
  const [show, setShow] = useState(false); 
+ const navigate = useNavigate();
    return (
      <div className='bg-[#dddbdb] w-[100vw] h-[100vh] flex items-center justify-center'>
        <form className='w-[90%] md:w-200 h-150 bg-[white] shadow-xl rounded-2xl flex'>
@@ -24,6 +26,7 @@ function Login() {
              <IoEye className='absolute w-[20px] h-[20px] cursor-pointer right-[5%] bottom-[4%]' onClick={()=>setShow(prev=>!prev)} /> }
            </div>
            <button className='w-[80%] h-[40px] bg-black text-white cursor-pointer flex items-center justify-center rounded-[5px]'>Login</button>
+           <span className='text-[13px] cursor-pointer text-[#585757]'>Forget password</span>
            <div className='w-[80%] flex items-center gap-2'>
              <div className='w-[25%] h-[0.5px] bg-[#c4c4c4]'></div>
              <div className='w-[50%] text-[15px] text-[#6f6f6f] flex items-center justify-center'>Or Continue</div>
@@ -33,6 +36,9 @@ function Login() {
              <img src={google} className='w-[25px]'alt="google" />
              <span className='text-[18px] text-gray-500' >oogle</span>
            </div>
+           <div className='text-[#6f6f6f]'>Create new account
+            <span className='underline underline-offset-1 text-[black] cursor-pointer' onClick={()=> navigate("/signup")}> signup</span>
+          </div>
  
          </div>
          {/* {right div} */}

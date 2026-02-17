@@ -3,9 +3,12 @@ import logo from "../assets/logo.jpg"
 import google from "../assets/google.jpg"
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEye } from "react-icons/io5";
+import { useNavigate } from 'react-router-dom';
 
 function SignUp() {
   const [show, setShow] = useState(false); 
+  // naviagate
+  const navigate = useNavigate();
   return (
     <div className='bg-[#dddbdb] w-[100vw] h-[100vh] flex items-center justify-center'>
       <form className='w-[90%] md:w-200 h-150 bg-[white] shadow-xl rounded-2xl flex'>
@@ -38,6 +41,9 @@ function SignUp() {
           <div className='w-[80%] h-[40px] border-1 border-[black] rounded-[5px] flex items-center justify-center'>
             <img src={google} className='w-[25px]'alt="google" />
             <span className='text-[18px] text-gray-500' >oogle</span>
+          </div>
+          <div className='text-[#6f6f6f]'>already have an account?
+            <span className='underline underline-offset-1 text-[black] cursor-pointer' onClick={()=> navigate("/login")}> Login</span>
           </div>
 
         </div>
