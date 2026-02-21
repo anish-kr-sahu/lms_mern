@@ -1,6 +1,9 @@
+
+
+//find current user
+
 import User from "../model/userModel.js"
 
-// find current user
 export const getCurrentUser = async(req,res) =>{
     try {
         const user = await User.findById(req.userId).select("-password");
@@ -10,10 +13,10 @@ export const getCurrentUser = async(req,res) =>{
             })
         }
         return res.status(200).json(user);
-        
     } catch (error) {
         return res.status(500).json({msg:
             `GetCurrent User error${error}`
         })
+        
     }
 }
