@@ -2,6 +2,7 @@
 
 //find current user
 
+import uploadOnCloudinary from "../config/cloudinary.js";
 import User from "../model/userModel.js"
 
 export const getCurrentUser = async(req,res) =>{
@@ -18,5 +19,25 @@ export const getCurrentUser = async(req,res) =>{
             `GetCurrent User error${error}`
         })
         
+    }
+}
+
+
+export const updateProfile = async (req,res) =>{
+    try{
+        const userId = req.userId;
+        const {description,name} = req.body;
+        let photUrl;
+        if(req.file){
+            photoUrl = await uploadOnCloudinary(req.file.path);
+        }
+        const user = await User.findByIdAndUpdate(userId,{name,description,photoUrl})
+        if(!user){
+            return res.status(404).json({msg: "User not Found"})
+        }
+        return res.status(200).json(user)
+    }catch(error){
+        return res.status(500).json({
+            msg:`updateProfile error ${error}`})
     }
 }
