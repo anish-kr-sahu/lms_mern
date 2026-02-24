@@ -1,6 +1,10 @@
 import React from 'react'
 import Nav from '../component/Nav'
 import home from "../assets/home1.jpg"
+import { SiViaplay } from "react-icons/si";
+import ai from "../assets/ai.png"
+import ai1 from "../assets/SearchAi.png"
+import Logos from '../component/Logos';
 
 function Home() {
   return (
@@ -11,10 +15,11 @@ function Home() {
         <span className='lg:text-[70px] absolute md:text-[40px] lg:top-[10%] top-[15%]  w-[100%] flex items-center justify-center text-white font-bold text-[20px]'>Grow Your Skills to Advance</span>
         <span  className='lg:text-[70px] text-[20px] md:text-[40px] absolute lg:top-[18%] top-[20%] w-[100%] flex items-center justify-center text-white font-bold'>Your Career path</span>
         <div className='absolute lg:top-[30%] top-[75%] md:top-[80%] w-[100%] flex items-center justify-center gap-3 flex-wrap'>
-          <button className='px-[20px] py-[10px] border-2 lg:border-white border-black lg:text-white text-black rounded-[10px] text-[18px] font-light flex gap-2 cursor-pointer'>View All Courses</button>
-          <button className='px-[20px] py-[10px] border-2 lg:bg-white border-black lg:text-black text-white rounded-[10px] text-[18px] font-light flex gap-2 cursor-pointer'>Search With Ai</button>
+          <button className='px-[20px] py-[10px] border-2 lg:border-white border-black lg:text-white text-black rounded-[10px] text-[18px] font-light flex gap-2 cursor-pointer'>View All Courses <SiViaplay className='w-[30px] h-[30px] lg:fill-white fill-black' />  </button>
+          <button className='px-[20px] py-[10px] border-2 lg:bg-white border-black lg:text-black text-white rounded-[10px] text-[18px] font-light flex gap-2 cursor-pointer'>Search With Ai <img src={ai} className='w-[30px] h-[30px] rounded-full hidden lg:block ' alt="search" /> <img src={ai1} className='w-[35px] h-[35px] rounded-full lg:hidden' alt="search"/></button>
         </div>
       </div>
+        <Logos/>
     </div>
   )
 }
