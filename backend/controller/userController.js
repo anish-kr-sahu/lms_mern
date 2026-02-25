@@ -22,22 +22,50 @@ export const getCurrentUser = async(req,res) =>{
     }
 }
 
-
 export const updateProfile = async (req,res) =>{
     try{
         const userId = req.userId;
-        const {description,name} = req.body;
-        let photUrl;
+
+        if(!userId){
+            return res.status(400).json({
+                msg:"User not authenticated"
+            })
+        }
+
+        const updateData = {};
+
+        if(req.body.name){
+            updateData.name = req.body.name;
+        }
+
+        if(req.body.description){
+            updateData.description = req.body.description;
+        }
+        
         if(req.file){
-            photoUrl = await uploadOnCloudinary(req.file.path);
+            const uploaded = await uploadOnCloudinary(req.file.path);
+            if(uploaded){
+                updateData.photoUrl = uploaded;
+            }
         }
-        const user = await User.findByIdAndUpdate(userId,{name,description,photoUrl})
+
+     const user = await User.findByIdAndUpdate(
+     userId,
+     updateData,
+     { returnDocument: 'after' }
+    ).select("-password");
+
         if(!user){
-            return res.status(404).json({msg: "User not Found"})
+            return res.status(404).json({
+                msg: "User not Found"
+            })
         }
+
         return res.status(200).json(user)
+
     }catch(error){
         return res.status(500).json({
-            msg:`updateProfile error ${error}`})
+            msg:`updateProfile error ${error}`
+        })
     }
 }
