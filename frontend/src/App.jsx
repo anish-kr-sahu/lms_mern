@@ -12,6 +12,7 @@ import ForgetPassword from './pages/ForgetPassword'
 import EditProfile from './pages/EditProfile'
 import Dashboard from './pages/Educator/Dashboard'
 import Courses from './pages/Educator/Courses'
+import CreateCourses from './pages/Educator/CreateCourses'
 
 export const serverUrl = "http://localhost:8000"
 
@@ -30,6 +31,7 @@ function App() {
          <Route path='/editprofile' element={userData?<EditProfile/> :<Navigate to={'/signup'} />}/>
          <Route path='/dashboard' element={userData?.role === "educator"?<Dashboard/> :<Navigate to={'/signup'} />}/>
          <Route path='/courses' element={userData?.role === "educator"?<Courses/> :<Navigate to={'/signup'} />}/>
+         <Route path='/createcourses' element={userData?.role === "educator"?<CreateCourses/> :<Navigate to={'/signup'} />}/>
       </Routes>
       
     </>
